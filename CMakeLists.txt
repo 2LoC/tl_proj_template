@@ -1,4 +1,28 @@
+# -----------------------------------------------------------------------------
+
+# You should not be modiying anything in this file. Instead, you should be
+# using "include/CMakeLists.txt" file for your project where you will have
+# access to tl_base_ci library
+
+# -----------------------------------------------------------------------------
+
 cmake_minimum_required(VERSION 3.1)
+
+# -----------------------------------------------------------------------------
+
+get_cmake_property(vars CACHE_VARIABLES)
+foreach(var ${vars})
+  get_property(currentHelpString CACHE "${var}" PROPERTY HELPSTRING)
+	if("${currentHelpString}" MATCHES "No help, variable specified on the command line." OR "${currentHelpString}" STREQUAL "")
+		list(APPEND CL_ARGS "-D${var}=${${var}}")
+	endif()
+endforeach()
+
+# -----------------------------------------------------------------------------
+
+project(SuperBuild)
+
+# -----------------------------------------------------------------------------
 
 include(ExternalProject)
 find_package(tl_base_ci QUIET)
@@ -10,7 +34,7 @@ if(NOT tl_base_ci_FOUND)
     GIT_REPOSITORY "https://github.com/2LoC/tl_base_ci"
     GIT_TAG "master"
 
-    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${TLOC_INSTALL_PREFIX} -DTLOC_DEP_SOURCE_DIR=${TLOC_DEP_SOURCE_DIR}
+    CMAKE_ARGS ${CL_ARGS}
   )
 else()
   message(STATUS "tl_base_ci FOUND: ${tl_base_ci_DIR}")
@@ -21,27 +45,25 @@ else()
     BUILD_COMMAND "make"
     CONFIGURE_COMMAND ""
     DOWNLOAD_COMMAND ""
-    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${TLOC_INSTALL_PREFIX} -DTLOC_DEP_SOURCE_DIR=${TLOC_DEP_SOURCE_DIR}
+
+    CMAKE_ARGS ${CL_ARGS}
   )
 endif()
 
-ExternalProject_Add(tl_proj_template_EXT
+# -----------------------------------------------------------------------------
+
+# get the current directory name, which will be this project's external
+# build name
+string(REPLACE "/" ";" p2list "${CMAKE_SOURCE_DIR}")
+list(REVERSE p2list)
+list(GET p2list 0 PROJ_NAME)
+
+ExternalProject_Add(${PROJ_NAME}_EXT
   SOURCE_DIR "${CMAKE_SOURCE_DIR}/include/"
 
-  CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${TLOC_INSTALL_PREFIX} -DTLOC_DEP_SOURCE_DIR=${TLOC_DEP_SOURCE_DIR}
+  CMAKE_ARGS ${CL_ARGS}
   )
 
-add_dependencies(tl_proj_template_EXT tl_base_ci_EXT)
+add_dependencies(${PROJ_NAME}_EXT tl_base_ci_EXT)
 
-
-#option(USE_SUPERBUILD "Turn superbuild on/off" ON)
-#
-#if(USE_SUPERBUILD)
-#  project(SUPERBUILD NONE)
-#  include("cmake/superbuild.cmake")
-#  return()
-#else()
-#  project(${PROJ_NAME})
-#endif()
-#
-#add_subdirectory("include/${PROJ_NAME}/")
+# -----------------------------------------------------------------------------
