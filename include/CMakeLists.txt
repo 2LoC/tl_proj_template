@@ -21,7 +21,7 @@ set(TRAVIS_SCRIPT
 "\
   - mkdir build
   - cd build
-  - cmake -DCMAKE_CXX_COMPILER=$COMPILER -DCMAKE_INSTALL_PREFIX=../install -TLOC_DETAILED_LOGS=ON ../
+  - cmake -DCMAKE_CXX_COMPILER=$COMPILER -DCMAKE_INSTALL_PREFIX=../install -DTLOC_DETAILED_LOGS=ON ../
   - make install
 "
 )
