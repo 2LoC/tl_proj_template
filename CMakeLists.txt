@@ -59,7 +59,7 @@ list(REVERSE PATH_LIST)
 list(GET PATH_LIST 0 PROJ_NAME)
 
 ExternalProject_Add(${PROJ_NAME}_EXT
-  SOURCE_DIR "${CMAKE_SOURCE_DIR}/include/"
+  SOURCE_DIR "${CMAKE_SOURCE_DIR}/proj/"
 
   CMAKE_ARGS ${CL_ARGS}
   )
