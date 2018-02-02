@@ -25,7 +25,7 @@ set(TRAVIS_SCRIPT
   - cd build
   - cmake -DCMAKE_CXX_COMPILER=$COMPILER -DCMAKE_INSTALL_PREFIX=../install -DTLOC_DETAILED_LOGS=ON ../
   - make
-  - cd ../proj/
+  - cd ../include/
   - mkdir build
   - cd build
   - cmake -DCMAKE_CXX_COMPILER=$COMPILER -DCMAKE_INSTALL_PREFIX=../install -DTLOC_DETAILED_LOGS=ON ../
