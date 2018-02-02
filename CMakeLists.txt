@@ -54,9 +54,9 @@ endif()
 
 # get the current directory name, which will be this project's external
 # build name
-string(REPLACE "/" ";" p2list "${CMAKE_SOURCE_DIR}")
-list(REVERSE p2list)
-list(GET p2list 0 PROJ_NAME)
+string(REPLACE "/" ";" PATH_LIST "${CMAKE_SOURCE_DIR}")
+list(REVERSE PATH_LIST)
+list(GET PATH_LIST 0 PROJ_NAME)
 
 ExternalProject_Add(${PROJ_NAME}_EXT
   SOURCE_DIR "${CMAKE_SOURCE_DIR}/include/"

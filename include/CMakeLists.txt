@@ -14,8 +14,10 @@ get_target_property(tl_base_ci_INCLUDE_DIRECTORIES tl_base_ci
 include("${tl_base_ci_INCLUDE_DIRECTORIES}/tl_base_ci/tl_common.cmake")
 include("${tl_base_ci_INCLUDE_DIRECTORIES}/tl_base_ci/tl_add_ycm_config.cmake")
 include("${tl_base_ci_INCLUDE_DIRECTORIES}/tl_base_ci/tl_add_travis.cmake")
+include("${tl_base_ci_INCLUDE_DIRECTORIES}/tl_base_ci/tl_add_gitignore.cmake")
 
 # -----------------------------------------------------------------------------
+# travis
 
 set(TRAVIS_SCRIPT
 "\
@@ -33,6 +35,14 @@ tl_add_travis(
   )
 
 # -----------------------------------------------------------------------------
+# gitignore
+
+tl_add_gitignore(
+  DESTINATION "${CMAKE_SOURCE_DIR}/../"
+  )
+
+# -----------------------------------------------------------------------------
+# project
 
 set(PROJ_NAME tl_proj_template)
 project(${PROJ_NAME})
