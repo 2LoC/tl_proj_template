@@ -57,4 +57,4 @@ tl_add_gitignore(
 set(PROJ_NAME tl_proj_template)
 project(${PROJ_NAME})
 
-add_subdirectory(tl_proj_template)
+add_subdirectory(${PROJ_NAME})
