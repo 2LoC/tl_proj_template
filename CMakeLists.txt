@@ -1,3 +1,7 @@
+# ----------------------------------
+# auto-generated file, do not modify
+# ----------------------------------
+
 # -----------------------------------------------------------------------------
 
 # You should not be modiying anything in this file. Instead, you should be

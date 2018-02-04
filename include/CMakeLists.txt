@@ -15,6 +15,12 @@ include("${tl_base_ci_INCLUDE_DIRECTORIES}/tl_base_ci/tl_common.cmake")
 include("${tl_base_ci_INCLUDE_DIRECTORIES}/tl_base_ci/tl_add_ycm_config.cmake")
 include("${tl_base_ci_INCLUDE_DIRECTORIES}/tl_base_ci/tl_add_travis.cmake")
 include("${tl_base_ci_INCLUDE_DIRECTORIES}/tl_base_ci/tl_add_gitignore.cmake")
+include("${tl_base_ci_INCLUDE_DIRECTORIES}/tl_base_ci/tl_add_superbuild.cmake")
+
+# -----------------------------------------------------------------------------
+# superbuild
+
+tl_add_superbuild(DESTINATION "${CMAKE_SOURCE_DIR}/../")
 
 # -----------------------------------------------------------------------------
 # travis
