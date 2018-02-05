@@ -52,9 +52,16 @@ tl_add_gitignore(
   )
 
 # -----------------------------------------------------------------------------
+# ycm
+
+tl_add_ycm_config()
+
+# -----------------------------------------------------------------------------
 # project
 
 set(PROJ_NAME tl_proj_template)
+
+set(CMAKE_CXX_STANDARD 11)
 project(${PROJ_NAME})
 
 add_subdirectory(${PROJ_NAME})
