@@ -1,4 +1,4 @@
-include("${tl_base_ci_INCLUDE_DIRECTORIES}/tl_base_ci/tl_add_library.cmake")
+TLOC_INCLUDE("/tl_base_ci/tl_add_library.cmake" ${tl_base_ci_INCLUDE_DIRECTORIES})
 
 tl_add_library(
   LIB_NAME "tl_proj_template"

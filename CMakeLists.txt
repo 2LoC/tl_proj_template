@@ -24,6 +24,12 @@ endforeach()
 
 # -----------------------------------------------------------------------------
 
+if(EXISTS "/home/samaursa/Repos/2LoC/tl_proj_template/CMakeLists_Pre.cmake")
+  include("/home/samaursa/Repos/2LoC/tl_proj_template/CMakeLists_Pre.cmake")
+endif()
+
+# -----------------------------------------------------------------------------
+
 project(SuperBuild)
 
 # -----------------------------------------------------------------------------
@@ -69,5 +75,15 @@ ExternalProject_Add(${PROJ_NAME}_EXT
   )
 
 add_dependencies(${PROJ_NAME}_EXT tl_base_ci_EXT)
+
+# -----------------------------------------------------------------------------
+
+include(/home/samaursa/Repos/2LoC/tl_proj_template/tl_include_common.cmake)
+
+# -----------------------------------------------------------------------------
+
+if(EXISTS "/home/samaursa/Repos/2LoC/tl_proj_template/CMakeLists_Post.cmake")
+  include("/home/samaursa/Repos/2LoC/tl_proj_template/CMakeLists_Post.cmake")
+endif()
 
 # -----------------------------------------------------------------------------
