@@ -78,7 +78,7 @@ add_dependencies(${PROJ_NAME}_EXT tl_base_ci_EXT)
 
 # -----------------------------------------------------------------------------
 
-include(/home/samaursa/Repos/2LoC/tl_proj_template/tl_include_common.cmake)
+include(tl_include_common.cmake)
 
 # -----------------------------------------------------------------------------
 
