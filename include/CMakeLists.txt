@@ -4,6 +4,7 @@ TLOC_INCLUDE("/tl_base_ci/tl_add_ycm_config.cmake" ${tl_base_ci_INCLUDE_DIRECTOR
 TLOC_INCLUDE("/tl_base_ci/tl_add_travis.cmake" ${tl_base_ci_INCLUDE_DIRECTORIES})
 TLOC_INCLUDE("/tl_base_ci/tl_add_gitignore.cmake" ${tl_base_ci_INCLUDE_DIRECTORIES})
 TLOC_INCLUDE("/tl_base_ci/tl_add_superbuild.cmake" ${tl_base_ci_INCLUDE_DIRECTORIES})
+TLOC_INCLUDE("/tl_base_ci/tl_add_setup.cmake" ${tl_base_ci_INCLUDE_DIRECTORIES})
 
 # -----------------------------------------------------------------------------
 # superbuild
@@ -17,8 +18,13 @@ set(TRAVIS_SCRIPT
 "\
   - mkdir build
   - cd build
-  - cmake -DCMAKE_CXX_COMPILER=$COMPILER -DCMAKE_INSTALL_PREFIX=../install -DTLOC_DETAILED_LOGS=ON ../
-  - make
+  - cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=$COMPILER -DCMAKE_INSTALL_PREFIX=../install -DTLOC_DETAILED_LOGS=ON ../
+  - make install
+  - cd ..
+  - mkdir build_release
+  - cd build_release
+  - cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=$COMPILER -DCMAKE_INSTALL_PREFIX=../install -DTLOC_DETAILED_LOGS=ON ../
+  - make install
 "
 )
 
@@ -36,6 +42,25 @@ tl_add_gitignore()
 # ycm
 
 tl_add_ycm_config()
+
+# -----------------------------------------------------------------------------
+# setup
+
+tl_add_setup(
+  NAME "setup"
+  BUILD_DIR "build"
+  BUILD_TYPE "Debug"
+  DESTINATION ${SOURCE_DIR}
+  CL_ARGS ${CL_ARGS}
+  )
+
+tl_add_setup(
+  NAME "setup_release"
+  BUILD_DIR "build_release"
+  BUILD_TYPE "Release"
+  DESTINATION ${SOURCE_DIR}
+  CL_ARGS ${CL_ARGS}
+  )
 
 # -----------------------------------------------------------------------------
 # project
