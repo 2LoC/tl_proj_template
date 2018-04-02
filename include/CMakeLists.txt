@@ -1,10 +1,6 @@
 # -----------------------------------------------------------------------------
 
-TLOC_INCLUDE("/tl_base_ci/tl_add_ycm_config.cmake" ${tl_base_ci_INCLUDE_DIRECTORIES})
-TLOC_INCLUDE("/tl_base_ci/tl_add_travis.cmake" ${tl_base_ci_INCLUDE_DIRECTORIES})
-TLOC_INCLUDE("/tl_base_ci/tl_add_gitignore.cmake" ${tl_base_ci_INCLUDE_DIRECTORIES})
-TLOC_INCLUDE("/tl_base_ci/tl_add_superbuild.cmake" ${tl_base_ci_INCLUDE_DIRECTORIES})
-TLOC_INCLUDE("/tl_base_ci/tl_add_setup.cmake" ${tl_base_ci_INCLUDE_DIRECTORIES})
+TLOC_INCLUDE("/tl_base_ci/tl_base_ci.cmake" ${tl_base_ci_INCLUDE_DIRECTORIES})
 
 # -----------------------------------------------------------------------------
 # superbuild
@@ -68,3 +64,7 @@ tl_add_setup(
 # project
 
 add_subdirectory(${PROJ_NAME})
+
+if (NOT TLOC_DISABLE_TESTS)
+  add_subdirectory(${PROJ_NAME}_tests)
+endif()
