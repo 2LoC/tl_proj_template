@@ -38,9 +38,7 @@ endfunction()
 
 # -----------------------------------------------------------------------------
 
-if(EXISTS "/home/samaursa/Repos/2LoC/tl_proj_template/CMakeLists_Pre.cmake")
-  include("/home/samaursa/Repos/2LoC/tl_proj_template/CMakeLists_Pre.cmake")
-endif()
+include("CMakeLists_Pre.cmake" OPTIONAL)
 
 # -----------------------------------------------------------------------------
 
@@ -77,7 +75,7 @@ endif()
 
 # -----------------------------------------------------------------------------
 
-TLOC_INCLUDE_TEMP("/tl_base_ci/tl_common.cmake" ${tl_base_ci_INCLUDE_DIRECTORIES})
+TLOC_INCLUDE_TEMP("/tl_base_ci/tl_base_ci.cmake" ${tl_base_ci_INCLUDE_DIRECTORIES})
 TLOC_LOG_COMMON_VARIABLES()
 
 # -----------------------------------------------------------------------------
@@ -94,9 +92,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ${TLOC_CMAKE_CXX_STANDARD_REQUIRED})
 
 # -----------------------------------------------------------------------------
 
-if(EXISTS "/home/samaursa/Repos/2LoC/tl_proj_template/CMakeLists_Post.cmake")
-  include("/home/samaursa/Repos/2LoC/tl_proj_template/CMakeLists_Post.cmake")
-endif()
+include("CMakeLists_Post.cmake" OPTIONAL)
 
 # -----------------------------------------------------------------------------
 
